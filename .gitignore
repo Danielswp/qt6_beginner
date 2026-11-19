@@ -150,3 +150,22 @@ third_party/install/
 *.gcov
 coverage/
 *.cover
+
+# =============================================
+# Qt Creator 影子构建目录（与 src 同级）
+# =============================================
+build-*/
+/build/
+/build*/
+
+# Qt Creator 本地项目配置
+*.pro.user
+*.pro.user.*
+CMakeLists.txt.user
+.qtc_clangd/
+.clangd
+
+# qmake 缓存（在构建目录内，双保险）
+.qmake.stash
+Makefile
+Makefile.*
