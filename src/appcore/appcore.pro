@@ -11,9 +11,11 @@ CONFIG(debug, debug|release) {
 
 SOURCES += \
     main.cpp \
+    mymetaobj.cpp
 
 HEADERS += \
+    mymetaobj.h
 
 
-FORMS += \
+FORMS +=
 

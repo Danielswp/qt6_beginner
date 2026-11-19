@@ -1,17 +1,9 @@
 #include <QApplication>
 #include <QDebug>
-#include <QListWidget>
-#include <QStandardItemModel>
-#include <QTreeView>
-#include <QList>
+#include <QtGlobal>
 #include <QPushButton>
-#include <QLabel>
-#include <QDialog>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QStyledItemDelegate>
-#include <QLineEdit>
 
+#include "mymetaobj.h"
 
 
 
@@ -19,47 +11,31 @@ int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 
-    QStandardItemModel model;
+    QPushButton *btn = new QPushButton();
+    const QMetaObject *metaPtr = btn->metaObject();
+    const QMetaObject metaObj = btn->staticMetaObject;
 
 
-    for(size_t i = 0; i < 4; ++i)
-    {
-        QList<QStandardItem*> list;
-        for(size_t j = 0; j < 5; ++j)
-        {
-            QStandardItem* item = new QStandardItem;
+    qDebug() << metaPtr->className();
+    qDebug() << metaObj.className();
 
-            item->setData(i+j, Qt::EditRole);
-            item->setText(QString("Item - i:%1 , j:%2").arg(i).arg(j));
-            item->setData(QString("(%1, %2)").arg(i).arg(j), Qt::ToolTipRole);
-            item->setData(QColor(
-                (i + j) * 25,
-                (3 * i) * 20,
-                (7 * j) * 8
-            ), Qt::DecorationRole);
+    qDebug() << QString(10,'=');
+    qDebug() << metaPtr->metaType();
+    qDebug() << metaPtr->superClass()->className();
+    qDebug() << metaPtr->inherits(metaPtr->superClass());
 
+    qDebug() << QString(10,'=');
 
+    MyMetaObj obj;
+    bool ok = obj.setProperty("recycle","gun");
 
-            item->setData(QColor(
-                (i + j) * 31,
-                (3 * i) * 1,
-                (7 * j) * 3
-            ), Qt::ForegroundRole);
+    if (ok)
+        qDebug() << QString("[INFO]: Recycle item : %1").arg(obj.property("recycle").toString());
+    else
+        qDebug() << QString("[WARNING]: Can't recycle item : %1").arg(obj.property("recycle").toString());
 
-            //item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-            list.push_back(item);
-        }
-        model.appendRow(list);
-    }
-
-
-    QTreeView w;
-    w.setModel(&model);
-    w.resize(800,600);
-    w.show();
-
-
-
+    QMetaObject::invokeMethod(&obj, "testCall");
+    QMetaObject::invokeMethod(&obj, "testCallParam1", Q_ARG(QString, "lulu"));
 
 	app.exec();
 }
