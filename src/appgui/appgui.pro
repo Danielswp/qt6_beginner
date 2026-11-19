@@ -8,6 +8,7 @@ CONFIG(debug, debug|release) {
 }
 
 
+RC_ICONS = $$PWD/app.ico
 
 SOURCES += \
     main.cpp \
