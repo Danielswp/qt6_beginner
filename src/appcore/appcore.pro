@@ -11,9 +11,11 @@ CONFIG(debug, debug|release) {
 
 SOURCES += \
     main.cpp \
+    metademo.cpp \
     mymetaobj.cpp
 
 HEADERS += \
+    metademo.h \
     mymetaobj.h
 
 
