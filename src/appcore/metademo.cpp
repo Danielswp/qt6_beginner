@@ -7,10 +7,11 @@
 #include <QMetaProperty>
 
 #include "mymetaobj.h"
+#include "tpersongui.h"
 
 void SWP_DEMO_META::demoMetaObject()
 {
-    QPushButton btn;                          // 栈上就够，别 new
+    QPushButton btn;
     const QMetaObject *metaPtr = btn.metaObject();
     const QMetaObject &metaObj = QPushButton::staticMetaObject;
 
@@ -21,7 +22,6 @@ void SWP_DEMO_META::demoMetaObject()
     qDebug() << "superClass:" << metaPtr->superClass()->className();
     qDebug() << "inherits  :" << metaPtr->inherits(metaPtr->superClass());
 
-    // 顺手把整条继承链和所有属性/方法列出来，学习时特别有用
     for (const QMetaObject *m = metaPtr; m; m = m->superClass()) {
         qDebug() << "  chain:" << m->className();
     }
@@ -40,7 +40,7 @@ void SWP_DEMO_META::demoProperty()
     else
         qDebug() << QStringLiteral("[WARNING]: Can't recycle item");
 
-    // 遍历全部属性：学元对象必看
+    // 遍历全部属性
     const QMetaObject *mo = obj.metaObject();
     for (int i = 0; i < mo->propertyCount(); ++i) {
         QMetaProperty p = mo->property(i);
@@ -53,7 +53,7 @@ void SWP_DEMO_META::demoInvoke()
     qDebug() << "== invokeMethod ==";
     MyMetaObj obj;
 
-    // 字符串版：运行期查找，写错只返回 false
+    // 运行期查找，写错只返回 false
     bool ok = QMetaObject::invokeMethod(&obj, "testCall");
     qDebug() << "testCall ->" << ok;
 
@@ -61,9 +61,12 @@ void SWP_DEMO_META::demoInvoke()
                                    Q_ARG(QString, QStringLiteral("lulu")));
     qDebug() << "testCallParam1 ->" << ok;
 
-    // Qt6 模板版（若 testCallParam1 是 public 且签名已知）：编译期检查，推荐
-    // QMetaObject::invokeMethod(&obj, &MyMetaObj::testCallParam1,
-    //                           Qt::DirectConnection, QStringLiteral("lulu"));
+}
+
+void SWP_DEMO_META::demoTPerson()
+{
+    TPersonGUI* w = new TPersonGUI();
+    w->show();
 }
 
 void SWP_DEMO_META::runAllDemos()
@@ -71,4 +74,5 @@ void SWP_DEMO_META::runAllDemos()
     demoMetaObject();
     demoProperty();
     demoInvoke();
+    demoTPerson();
 }

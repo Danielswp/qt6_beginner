@@ -12,12 +12,17 @@ CONFIG(debug, debug|release) {
 SOURCES += \
     main.cpp \
     metademo.cpp \
-    mymetaobj.cpp
+    mymetaobj.cpp \
+    tperson.cpp \
+    tpersongui.cpp
 
 HEADERS += \
     metademo.h \
-    mymetaobj.h
+    mymetaobj.h \
+    tperson.h \
+    tpersongui.h
 
 
-FORMS +=
+FORMS += \
+    tpersongui.ui
 
