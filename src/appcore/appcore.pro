@@ -10,6 +10,7 @@ CONFIG(debug, debug|release) {
 
 
 SOURCES += \
+    containerdemo.cpp \
     main.cpp \
     metademo.cpp \
     mymetaobj.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
     tpersongui.cpp
 
 HEADERS += \
+    containerdemo.h \
     metademo.h \
     mymetaobj.h \
     tperson.h \

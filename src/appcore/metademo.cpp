@@ -9,6 +9,14 @@
 #include "mymetaobj.h"
 #include "tpersongui.h"
 
+void SWP_DEMO_META::runAllDemos()
+{
+    demoMetaObject();
+    demoProperty();
+    demoInvoke();
+    demoTPerson();
+}
+
 void SWP_DEMO_META::demoMetaObject()
 {
     QPushButton btn;
@@ -69,10 +77,4 @@ void SWP_DEMO_META::demoTPerson()
     w->show();
 }
 
-void SWP_DEMO_META::runAllDemos()
-{
-    demoMetaObject();
-    demoProperty();
-    demoInvoke();
-    demoTPerson();
-}
+

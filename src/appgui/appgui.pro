@@ -11,10 +11,12 @@ CONFIG(debug, debug|release) {
 RC_ICONS = $$PWD/app.ico
 
 SOURCES += \
+    guidemo.cpp \
     main.cpp \
     widget.cpp
 
 HEADERS += \
+    guidemo.h \
     widget.h
 
 FORMS += \
