@@ -3,7 +3,8 @@
 
 namespace SWP_DEMO_GUI{
     void runAllDemos();
-    void demoCommonGUI();
+    void demoCommonGUIButton();
+    void demoCommonGUIInput();
 }
 
 #endif // GUI_DEMO_

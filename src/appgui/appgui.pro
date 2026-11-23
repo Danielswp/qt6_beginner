@@ -8,7 +8,7 @@ CONFIG(debug, debug|release) {
 }
 
 
-RC_ICONS = $$PWD/app.ico
+#RC_ICONS = $$PWD/app.ico
 
 SOURCES += \
     guidemo.cpp \
@@ -21,4 +21,7 @@ HEADERS += \
 
 FORMS += \
     widget.ui
+
+RESOURCES += \
+    Resources/resources.qrc
 
