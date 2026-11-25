@@ -10,6 +10,11 @@ CONFIG(debug, debug|release) {
 
 #RC_ICONS = $$PWD/app.ico
 
+# 3rdparty
+INCLUDEPATH += $$PWD/../../3rdparty/md4c/src
+LIBS += -L"$$PWD/../../3rdparty/md4c/build/src/Debug" -lmd4c-html -lmd4c
+
+
 SOURCES += \
     guidemo.cpp \
     main.cpp \
