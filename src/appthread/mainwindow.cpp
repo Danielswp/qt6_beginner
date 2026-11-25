@@ -14,7 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_worker->moveToThread(m_workerThread);
 
     connect(this, SIGNAL(startWork(int)), m_worker, SLOT(doWork(int)));
-    connect(this, SIGNAL(requestCancel()), m_worker, SLOT(cancel()), Qt::DirectConnection);
+    //connect(this, SIGNAL(requestCancel()), m_worker, SLOT(cancel()), Qt::DirectConnection);
+    connect(this, SIGNAL(requestCancel()), m_worker, SLOT(cancel()));
 
     connect(m_worker, &Worker::progressChanged, this, [this](int current, int total){
         ui->progressBar->setMaximum(total);

@@ -1,4 +1,3 @@
-
 #ifndef THREADDEMO_H
 #define THREADDEMO_H
 
